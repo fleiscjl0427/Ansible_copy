@@ -1,0 +1,14 @@
+ ---
+
+- hosts: all 
+  become: true 
+  tasks: 
+ 
+  - name: install httpd package 
+    dnf:
+      name: httpd 
+  
+  
+  - name: Update package index
+    dnf:
+      update_cahce: yes
