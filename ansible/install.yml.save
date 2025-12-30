@@ -1,4 +1,4 @@
- ---
+---
 
 - hosts: all 
   become: true 
@@ -7,8 +7,10 @@
   - name: install httpd package 
     dnf:
       name: httpd 
+      state: latest
   
   
   - name: Update package index
     dnf:
-      update_cahce: yes
+      update_cache: yes
+    when:

@@ -8,8 +8,14 @@
     dnf:
       name: httpd 
       state: latest
-  
+    when: ansible_distribution == "RedHat"  
   
   - name: Update package index
     dnf:
       update_cache: yes
+
+
+  - name: install flatpak package 
+    dnf: 
+      name: flatpak
+      state: latest
