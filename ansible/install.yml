@@ -6,16 +6,10 @@
  
   - name: install httpd package 
     dnf:
-      name: httpd 
-      state: latest
-    when: ansible_distribution == "RedHat"  
-  
-  - name: Update package index
-    dnf:
-      update_cache: yes
+      name: 
+        - "{{ httpd_package }}"
+      state: latest 
 
-
-  - name: install flatpak package 
-    dnf: 
-      name: flatpak
+      name:
+        - "{{ flatpak_package }}"
       state: latest

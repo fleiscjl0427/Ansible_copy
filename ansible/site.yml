@@ -1,0 +1,29 @@
+---
+
+- hosts: 8451_Hosts
+  become: true 
+  pre_tasks:
+
+  - name: Update package index
+    dnf:
+      update_cache: yes
+      update_only: yes
+    when: ansible_distribution == "RedHat"
+
+
+  tasks: 
+ 
+  - name: install httpd package 
+    tags: mariadb
+    dnf:
+      name: 
+        - "{{ httpd_package }}"
+        - mariadb-server
+
+  - name: Copy default html file
+    copy:
+      src: files/default.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
